@@ -1,0 +1,5 @@
+{
+  "name": "Data Structure Explorer",
+  "description": "Interactive educational platform for learning linear and non-linear data structures with persistent storage.",
+  "requestFramePermissions": []
+}
