@@ -151,12 +151,15 @@ const Visualizer = ({
         <div className={`flex gap-4 items-center ${type === 'Stack' ? 'flex-col-reverse' : 'flex-row'}`}>
           <AnimatePresence mode="popLayout">
             {items.map((item, index) => (
-              <React.Fragment key={item.id}>
-                <motion.div
-                  layout
-                  initial={{ scale: 0.8, opacity: 0, y: type === 'Stack' ? 20 : 0, x: type !== 'Stack' ? -20 : 0 }}
-                  animate={{ scale: 1, opacity: 1, y: 0, x: 0 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ scale: 0.8, opacity: 0, y: type === 'Stack' ? 20 : 0, x: type !== 'Stack' ? -20 : 0 }}
+                animate={{ scale: 1, opacity: 1, y: 0, x: 0 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                className="flex items-center gap-4"
+              >
+                <div
                   className={`
                     relative group min-w-[80px] h-16 flex items-center justify-center 
                     bg-zinc-800 border border-zinc-700 rounded-xl text-white font-mono text-lg
@@ -184,19 +187,15 @@ const Visualizer = ({
                   {type === 'Linked-List' && index === 0 && (
                     <span className="absolute -top-6 text-[10px] text-emerald-500 uppercase font-bold tracking-tighter">Head</span>
                   )}
-                </motion.div>
+                </div>
 
                 {/* Arrows for Linked-List */}
                 {type === 'Linked-List' && index < items.length - 1 && (
-                  <motion.div 
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: 'auto' }}
-                    className="flex items-center text-emerald-500/50"
-                  >
+                  <div className="flex items-center text-emerald-500/50">
                     <ChevronRight className="w-6 h-6" />
-                  </motion.div>
+                  </div>
                 )}
-              </React.Fragment>
+              </motion.div>
             ))}
           </AnimatePresence>
           {items.length === 0 && (
